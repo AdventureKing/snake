@@ -9,13 +9,13 @@ import java.awt.event.KeyListener;
 /**
  * Created by brandon.a.snow on 12/21/2016.
  */
-public class board extends JPanel implements Runnable, KeyListener {
+public class Board extends JPanel implements Runnable, KeyListener {
 
 
     public static final int WIDTH = 600;
     public static final int HEIGHT = 400;
 
-    public board(){
+    public Board(){
        setPreferredSize(new Dimension(WIDTH, HEIGHT));
        setFocusable(true);
        requestFocus();

@@ -1,4 +1,4 @@
-import game.state.board;
+import game.state.Board;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by brandon.a.snow on 12/21/2016.
  */
-public class main {
+public class Main {
 
 
 
@@ -16,7 +16,7 @@ public class main {
         //game frame
         JFrame window = new JFrame("SNAKE");
         //game board
-        board gameBoard = new board();
+        Board gameBoard = new Board();
         //put game board in the frame
         window.setContentPane(gameBoard);
         //gets rid of extra space
