@@ -71,7 +71,7 @@ public class Board extends JPanel implements ActionListener {
     		g.setColor(Color.green);
     		g.fillRect(food.getFoodX(), food.getFoodY(), PIXELSIZE, PIXELSIZE);
     	
-	    	for(int i = 0; i < snake.getJoints(); i++){
+	    	for(int i = 0; i < snake.getLength(); i++){
 	    		// Snake's head
 	    		if(i == 0) {
 	    			g.setColor(Color.RED);
@@ -93,7 +93,7 @@ public class Board extends JPanel implements ActionListener {
     	snake.setLength(INITIALJOINTS); // the initialize size of the snake
     	
     	// Create the snake
-    	for(int i = 0; i < snake.getJoints(); i++) {
+    	for(int i = 0; i < snake.getLength(); i++) {
     		snake.setSnakeX(WIDTH / 2);
     		snake.setSnakeY(HEIGHT / 2);
     	}
@@ -123,7 +123,7 @@ public class Board extends JPanel implements ActionListener {
     }
     
     // Check collision against self or the board's edge
-    void checkCollision() {
+    void checkCollisions() {
     	// If snake collides with its own joint
     	for(int i = snake.getLength(); i > 0; i--) {
     		if(snake.getSnakeX(0) == snake.getSnakeX(i) && snake.getSnakeY(0) == snake.getSnakeY(i)) {
@@ -182,42 +182,27 @@ public class Board extends JPanel implements ActionListener {
     	public void keyPressed(KeyEvent e) {
     		int key = e.getKeyCode();
     		
-    		boolean movingRight = snake.isMovingRight();
-    		boolean movingLeft = snake.isMovingLeft();
-    		boolean movingUp = snake.isMovingUp();
-    		boolean movingDown = snake.isMovingDown();
+    		Snake.Direction direction = snake.getDirection();
     		
-    		if(key == KeyEvent.VK_LEFT && !movingRight) {
-    			snake.setMovingLeft(true);
-    			snake.setMovingUp(false);
-    			snake.setMovingDown(false);
+    		if(key == KeyEvent.VK_LEFT && (snake.getDirection() != Snake.Direction.RIGHT)) {
+    			snake.setDirection(Snake.Direction.LEFT);
     		}
     		
-    		if(key == KeyEvent.VK_RIGHT && !movingLeft) {
-    			snake.setMovingRight(true);
-    			snake.setMovingUp(false);
-    			snake.setMovingDown(false);
+    		if(key == KeyEvent.VK_RIGHT && (snake.getDirection() != Snake.Direction.LEFT)) {
+                snake.setDirection(Snake.Direction.RIGHT);
     		}
     		
-    		if(key == KeyEvent.VK_UP && !movingDown) {
-    			snake.setMovingUp(true);
-    			snake.setMovingRight(false);
-    			snake.setMovingLeft(false);
+    		if(key == KeyEvent.VK_UP && (snake.getDirection() != Snake.Direction.DOWN)) {
+                snake.setDirection(Snake.Direction.UP);
     		}
     		
-    		if(key == KeyEvent.VK_DOWN && !movingUp) {
-    			snake.setMovingDown(true);
-    			snake.setMovingRight(false);
-    			snake.setMovingLeft(false);
+    		if(key == KeyEvent.VK_DOWN && (snake.getDirection() != Snake.Direction.UP)) {
+                snake.setDirection(Snake.Direction.DOWN);
     		}
     		
     		if(key == KeyEvent.VK_ENTER && inGame == false) {
     			inGame = true;
-    			snake.setMovingDown(false);
-    			snake.setMovingUp(false);
-    			snake.setMovingLeft(false);
-    			snake.setMovingRight(false);
-    			
+
     			initializeGame();
     		}
     		
