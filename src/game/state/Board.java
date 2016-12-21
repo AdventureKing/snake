@@ -90,7 +90,7 @@ public class Board extends JPanel implements ActionListener {
     }
     
     public void initializeGame() {
-    	snake.setJoints(INITIALJOINTS); // the initialize size of the snake
+    	snake.setLength(INITIALJOINTS); // the initialize size of the snake
     	
     	// Create the snake
     	for(int i = 0; i < snake.getJoints(); i++) {
@@ -116,7 +116,7 @@ public class Board extends JPanel implements ActionListener {
     			&& (proximity(snake.getSnakeY(0), food.getFoodY(), 20))) {
     		System.out.println("Intersection occurs");
     		// Add a joint to our snake
-    		snake.setJoints(snake.getJoints() + 1);
+    		snake.setLength(snake.getLength() + 1);
     		// Create new food
     		food.createFood();
     	}
@@ -125,7 +125,7 @@ public class Board extends JPanel implements ActionListener {
     // Check collision against self or the board's edge
     void checkCollision() {
     	// If snake collides with its own joint
-    	for(int i = snake.getJoints(); i > 0; i--) {
+    	for(int i = snake.getLength(); i > 0; i--) {
     		if(snake.getSnakeX(0) == snake.getSnakeX(i) && snake.getSnakeY(0) == snake.getSnakeY(i)) {
     			inGame = false;
     		}
