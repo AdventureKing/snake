@@ -6,68 +6,41 @@ package game.state;
 public class Snake {
 
     //starting position
-    int position_x = 0;
-    int position_y = 0;
+    int[] x = new int[Board.getAllDots()];
+    int[] y = new int[Board.getAllDots()];
 
-    //direction its moving
-    boolean movingLeft;
-    boolean movingRight;
-    boolean movingUp;
-    boolean movingDown;
+    public enum Direction {
+        RIGHT,
+        LEFT,
+        UP,
+        DOWN;
+    }
 
-    int length = 1;
+
+
+
+
+    Direction direction = Direction.RIGHT;
+
+    int length = 0;//default length is one
 
     public Snake(){
 
     }
-
-
-    public int getPosition_x() {
-        return position_x;
+    public int getSnakeX(int index) {
+        return x[index];
     }
 
-    public void setPosition_x(int position_x) {
-        this.position_x = position_x;
+    public int getSnakeY(int index) {
+        return y[index];
     }
 
-    public int getPosition_y() {
-        return position_y;
+    public void setSnakeX(int i) {
+        x[0] = i;
     }
 
-    public void setPosition_y(int position_y) {
-        this.position_y = position_y;
-    }
-
-    public boolean isMovingLeft() {
-        return movingLeft;
-    }
-
-    public void setMovingLeft(boolean movingLeft) {
-        this.movingLeft = movingLeft;
-    }
-
-    public boolean isMovingRight() {
-        return movingRight;
-    }
-
-    public void setMovingRight(boolean movingRight) {
-        this.movingRight = movingRight;
-    }
-
-    public boolean isMovingUp() {
-        return movingUp;
-    }
-
-    public void setMovingUp(boolean movingUp) {
-        this.movingUp = movingUp;
-    }
-
-    public boolean isMovingDown() {
-        return movingDown;
-    }
-
-    public void setMovingDown(boolean movingDown) {
-        this.movingDown = movingDown;
+    public void setSnakeY(int i) {
+        y[0] = i;
     }
 
     public int getLength() {
@@ -78,5 +51,37 @@ public class Snake {
         this.length = length;
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    public void move(){
+
+        for (int i = length; i > 0; i--) {
+
+            // Moves the joints of the snake 'up the chain'
+            // Meaning, the joint of the snake all move up one
+            x[i] = x[(i - 1)];
+            y[i] = y[(i - 1)];
+        }
+
+        //if certain direction move that direction
+        switch (direction) {
+            case LEFT : x[0] -= Board.getDotSize();
+                break;
+            case RIGHT: x[0] += Board.getDotSize();
+                break;
+            case UP:   y[0] -= Board.getDotSize();
+                break;
+            case DOWN: y[0] += Board.getDotSize();
+                break;
+            default: x[0] += Board.getDotSize();
+                break;
+        }
+    }
 
 }

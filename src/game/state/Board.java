@@ -99,7 +99,7 @@ public class Board extends JPanel implements ActionListener {
     	}
     	
     	// Initial starting direction for snake to move
-    	snake.setMovingRight(true);
+    	snake.setDirection(Snake.Direction.RIGHT);
     	
     	// Generate first food
     	food.createFood();
