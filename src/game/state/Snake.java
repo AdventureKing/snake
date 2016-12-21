@@ -60,8 +60,8 @@ public class Snake {
     }
 
     public void move(){
-
-        for (int i = length; i > 0; i--) {
+        int i;
+        for (i = length; i > 0; i--) {
 
             // Moves the joints of the snake 'up the chain'
             // Meaning, the joint of the snake all move up one
