@@ -23,8 +23,8 @@ public class Board extends JPanel implements ActionListener {
 
 
 	
-    public static final int WIDTH = 600;
-    public static final int HEIGHT = 400;
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 1000;
     
     
     private final static int PIXELSIZE = 25;
@@ -35,7 +35,7 @@ public class Board extends JPanel implements ActionListener {
     
     // set game speed, the lower the # the faster the snake
     // Maybe increment this gradually to make the game harder
-    private static int speed = 45;
+    private static int speed = 100;
     
     // Check to see game running
     private boolean inGame = true;
@@ -171,7 +171,7 @@ public class Board extends JPanel implements ActionListener {
     		snake.move();
     		
     		System.out.println(snake.getSnakeX(0) + " " + snake.getSnakeY(0)
-    				+ " " + food.getFood() + ", " + food.getFoodY());
+    				+ " " + food.getFoodX() + ", " + food.getFoodY());
     	}
     	// Repaint
     	repaint();
